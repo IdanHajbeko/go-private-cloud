@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Private Cloud Server</title>
+    <style>
+        body {
+            background-color: #222831;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #76ABAE;
+            margin-bottom: 20px;
+        }
+        .file-list, .file-upload-form {
+            margin-bottom: 20px;
+        }
+        .file-list button, .file-upload-form .button {
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .file-list button:hover, .file-upload-form .button:hover {
+            background-color: #0056b3;
+        }
+        .file-upload-form .input {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Private Cloud Server</h1>
+
+        <div class="file-list">
+            <h2>Download Files</h2>
+            {{range .Files}}
+                <button onclick="document.location.href = '/download?file={{.}}';">{{.}}</button><br>
+            {{end}}
+        </div>
+
+        <div class="file-upload-form">
+            <h2>Upload File</h2>
+            <form id="form" enctype="multipart/form-data" action="/upload" method="POST">
+                <input class="input file-input" type="file" name="file" multiple />
+                <button class="button" type="submit">Upload</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
